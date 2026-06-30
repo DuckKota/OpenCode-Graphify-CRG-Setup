@@ -22,11 +22,22 @@ This setup script configures your repository to work optimally with AI coding as
 
 Before running the setup script, ensure you have the following installed:
 
+> [!NOTE]
+> While this project doesn't require you to have [OpenCode](https://opencode.ai/) installed, it's an assumed dependency.
+
 - [Graphify](https://graphifylabs.ai/)
 - [Code Review Graph](https://code-review-graph.com/)
 
-> [!NOTE]
-> While this project doesn't require you to have [OpenCode](https://opencode.ai/) installed, it's an assumed dependency.
+> [!TIP]
+> Quick install of those tools:
+> ```bash
+> # Install uv: https://docs.astral.sh/uv/
+> curl -LsSf https://astral.sh/uv/install.sh | sh
+>
+> # Install Graphify & Code-Review-Graph (CRG)
+> uv tool install graphifyy
+> uv tool install code-review-graph
+> ```
 
 ## Installation
 
