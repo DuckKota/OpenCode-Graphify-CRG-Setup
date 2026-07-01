@@ -58,10 +58,10 @@ export const GraphifyPlugin = async ({ directory }) => {
         const pattern = output.args?.pattern || input.input?.pattern;
         if (!pattern) return;
 
-        const fakeCmd = `grep -r '\${pattern}' .`;
+        const fakeCmd = `grep -r '${pattern}' .`;
         const hook = queryGraphHook(scriptPath, fakeCmd);
         applyGraphResult(hook, (ctx) => {
-          output.args.pattern = `\${pattern}\n\n${ctx}`;
+          output.args.pattern = `${pattern}\n\n${ctx}`;
         });
         return;
       }
