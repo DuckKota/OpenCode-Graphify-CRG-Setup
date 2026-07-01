@@ -269,7 +269,7 @@ try:
         payload = {
             'code-review-graph': {
                 'type': 'local',
-                'command': ['uvx', '--with', 'code-review-graph[embeddings]', 'code-review-graph', 'serve'],
+                'command': ['uvx', 'code-review-graph', 'serve'],
                 'cwd': os.environ.get('_CRG_GIT_ROOT'),
                 'enabled': True,
                 'environment': {
