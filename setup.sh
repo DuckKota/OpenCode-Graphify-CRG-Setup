@@ -368,6 +368,10 @@ then
 fi
 # code-review-graph-hook-end
 EOF
+
+    # Set the hook files to be executable
+    chmod +x "$_INSTALL_DIR/.git/hooks/post-commit"
+    chmod +x "$_INSTALL_DIR/.git/hooks/post-checkout"
 }
 
 # Function to install the Smart Grep plugin
