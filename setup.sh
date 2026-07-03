@@ -358,7 +358,7 @@ then
 fi
 # code-review-graph-hook-end
 EOF
-    echo "post-commit: appended to existing post-commit hook at $_INSTALL_DIR/.git/hooks/post-commit"
+        echo "post-commit: appended to existing post-commit hook at $_INSTALL_DIR/.git/hooks/post-commit"
     fi
 
     if grep -q "# code-review-graph-hook-start" "$_INSTALL_DIR/.git/hooks/post-checkout"
@@ -378,7 +378,7 @@ then
 fi
 # code-review-graph-hook-end
 EOF
-    echo "post-checkout: appended to existing post-checkout hook at $_INSTALL_DIR/.git/hooks/post-checkout"
+        echo "post-checkout: appended to existing post-checkout hook at $_INSTALL_DIR/.git/hooks/post-checkout"
     fi
 
     # Set the hook files to be executable
