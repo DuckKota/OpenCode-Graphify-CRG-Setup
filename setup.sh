@@ -325,8 +325,6 @@ except Exception as e:
 # Function to set up git hooks for automatic graph updates
 function setup_git_hooks
 {
-    _print "Setting up automatic graph updates..."
-
     # Create the hook files, starting with a shebang, if they don't exist
     if [[ ! -f "$_INSTALL_DIR/.git/hooks/post-commit" ]]
     then
@@ -338,10 +336,16 @@ function setup_git_hooks
     fi
 
     # Install Graphify hooks
+    _print "Setting up automatic Graphify updates..."
     (cd $_INSTALL_DIR && graphify hook install)
 
     # Install CRG hooks
-    cat << 'EOF' >> $_INSTALL_DIR/.git/hooks/post-commit
+    _print "Setting up automatic CRG updates..."
+    if grep -q "# code-review-graph-hook-start" "$_INSTALL_DIR/.git/hooks/post-commit"
+    then
+        echo "CRG post-commit hook already exists, skipping."
+    else
+        cat << 'EOF' >> $_INSTALL_DIR/.git/hooks/post-commit
 
 # code-review-graph-hook-start
 if command -v code-review-graph >/dev/null 2>&1
@@ -354,8 +358,13 @@ then
 fi
 # code-review-graph-hook-end
 EOF
-
-    cat << 'EOF' >> $_INSTALL_DIR/.git/hooks/post-checkout
+    fi
+    
+    if grep -q "# code-review-graph-hook-start" "$_INSTALL_DIR/.git/hooks/post-checkout"
+    then
+        echo "CRG post-checkout hook already exists, skipping."
+    else
+        cat << 'EOF' >> $_INSTALL_DIR/.git/hooks/post-checkout
 
 # code-review-graph-hook-start
 if command -v code-review-graph >/dev/null 2>&1
@@ -368,9 +377,9 @@ then
 fi
 # code-review-graph-hook-end
 EOF
+    fi
 
     # Set the hook files to be executable
-    _print "Setting executable permissions for git hooks..."
     chmod 755 "$_INSTALL_DIR/.git/hooks/post-commit"
     chmod 755 "$_INSTALL_DIR/.git/hooks/post-checkout"
 }
