@@ -343,7 +343,7 @@ function setup_git_hooks
     _print "Setting up automatic CRG updates..."
     if grep -q "# code-review-graph-hook-start" "$_INSTALL_DIR/.git/hooks/post-commit"
     then
-        echo "CRG post-commit hook already exists, skipping."
+        echo "post-commit: already installed at $_INSTALL_DIR/.git/hooks/post-commit"
     else
         cat << 'EOF' >> $_INSTALL_DIR/.git/hooks/post-commit
 
@@ -359,10 +359,10 @@ fi
 # code-review-graph-hook-end
 EOF
     fi
-    
+
     if grep -q "# code-review-graph-hook-start" "$_INSTALL_DIR/.git/hooks/post-checkout"
     then
-        echo "CRG post-checkout hook already exists, skipping."
+        echo "post-checkout: already installed at $_INSTALL_DIR/.git/hooks/post-checkout"
     else
         cat << 'EOF' >> $_INSTALL_DIR/.git/hooks/post-checkout
 
