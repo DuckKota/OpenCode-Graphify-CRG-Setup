@@ -337,16 +337,10 @@ function setup_git_hooks
         echo "#!/bin/sh" > "$_INSTALL_DIR/.git/hooks/post-checkout"
     fi
 
-    # 2. Add our custom resource allocation logic
-    _write_script_to_file "git_resource_check.bash" "$_INSTALL_DIR/.git/hooks/post-commit" --append
-    _write_script_to_file "git_resource_check.bash" "$_INSTALL_DIR/.git/hooks/post-checkout" --append
-    chmod +x "$_INSTALL_DIR/.git/hooks/post-commit"
-    chmod +x "$_INSTALL_DIR/.git/hooks/post-checkout"
-
-    # 3. Install Graphify hooks
+    # Install Graphify hooks
     (cd $_INSTALL_DIR && graphify hook install)
 
-    # 4. Install CRG hooks
+    # Install CRG hooks
     cat << 'EOF' >> $_INSTALL_DIR/.git/hooks/post-commit
 
 # code-review-graph-hook-start
